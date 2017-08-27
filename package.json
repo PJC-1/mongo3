@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/PJC-1/mongo3#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "mongoose": "^4.10.8",
+    "pug": "^2.0.0-rc.3"
   }
 }
