@@ -1,0 +1,22 @@
+{
+  "name": "mongo3",
+  "version": "1.0.0",
+  "description": "Practice makes perfect =)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PJC-1/mongo3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PJC-1/mongo3/issues"
+  },
+  "homepage": "https://github.com/PJC-1/mongo3#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
