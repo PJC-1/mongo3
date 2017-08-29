@@ -46,6 +46,11 @@ app.get('/articles/add', function(req, res){
     });
 });
 
+// Add Submit POST Route
+app.post('/articles/add', function(req, res){
+    console.log('Submitted');
+    return;
+});
 
 // Start Server
 app.listen(process.env.PORT || 3000, function(){
