@@ -28,9 +28,12 @@ app.set('view engine', 'pug');
 
 // Body Parser Middleware
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+// Set Public Folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Home Route
 app.get('/', function(req, res){
@@ -45,6 +48,20 @@ app.get('/', function(req, res){
         }
     });
 });
+
+// Get Single Article
+app.get('/article/:id', function(req, res){
+    Article.findById(req.params.id, function(err, article){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('article', {
+              article:article
+            });
+        }
+    });
+});
+
 
 // Add Route
 app.get('/articles/add', function(req, res){
