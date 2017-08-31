@@ -40,6 +40,7 @@ app.get('/', function(req, res){
     Article.find({}, function(err, articles){
         if(err){
             console.log(err);
+            return;
         } else {
             res.render('index', {
               title : 'Articles',
@@ -54,6 +55,7 @@ app.get('/article/:id', function(req, res){
     Article.findById(req.params.id, function(err, article){
         if(err){
             console.log(err);
+            return;
         } else {
             res.render('article', {
               article:article
@@ -86,6 +88,22 @@ app.post('/articles/add', function(req, res){
         }
     });
 });
+
+// Load Edit Form
+app.get('/articles/edit/:id', function(req, res){
+    Article.findById(req.params.id, function(err, article){
+        if(err){
+            console.log(err);
+            return;
+        } else {
+            res.render('edit_article', {
+                title: 'Edit Article',
+                article:article
+            });
+        }
+    });
+});
+
 
 // Start Server
 app.listen(process.env.PORT || 3000, function(){
