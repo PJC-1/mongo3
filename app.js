@@ -88,8 +88,10 @@ app.get('/', function(req, res){
 });
 
 // Route files
+let users = require('./routes/users');
 let articles =  require('./routes/articles');
-app.use('/articles', articles)
+app.use('/users', users);
+app.use('/articles', articles);
 
 
 // Start Server
