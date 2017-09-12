@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
+const config = require('./config/database');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mongo3');
+mongoose.connect(process.env.MONGODB_URI || config.database);
+
 let db = mongoose.connection;
 
 // Check for DB errors
