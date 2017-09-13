@@ -6,6 +6,8 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const config = require('./config/database');
+const passport = require('passport');
+
 
 mongoose.connect(process.env.MONGODB_URI || config.database);
 
@@ -72,6 +74,13 @@ app.use(expressValidator({
     };
   }
 }));
+
+
+// Passport config
+require('./config/passport')(passport);
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // Home Route
