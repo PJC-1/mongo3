@@ -47,16 +47,21 @@ router.post('/add', function(req, res){
 });
 
 // Load Edit Form
-router.get('/edit/:id', function(req, res){
+router.get('/edit/:id', ensureAuthenticated, function(req, res){
     Article.findById(req.params.id, function(err, article){
-        if(err){no
+        if(err){
             console.log(err);
             return;
         } else {
-            res.render('edit_article', {
-                title: 'Edit Article',
-                article:article
-            });
+            if(article.author != req.user._id){
+                req.flash('danger', 'Not Authorized');
+                res.redirect('/');
+            } else {
+                res.render('edit_article', {
+                  title: 'Edit Article',
+                  article:article
+                });
+            }
         }
     });
 });
