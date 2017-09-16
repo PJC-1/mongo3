@@ -8,7 +8,7 @@ let User = require('../models/user');
 
 
 // Add Route
-router.get('/add', function(req, res){
+router.get('/add', ensureAuthenticated, function(req, res){
     res.render('add_article', {
         title : 'Add Article'
     });
@@ -117,5 +117,15 @@ router.get('/:id', function(req, res){
         }
     });
 });
+
+// Access Control
+function ensureAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    } else {
+        req.flash('danger', 'Please login');
+        res.redirect('/users/login');
+    }
+}
 
 module.exports = router;
