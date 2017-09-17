@@ -89,14 +89,24 @@ router.post('/edit/:id', function(req, res){
 
 // Delete a record
 router.delete('/:id', function(req, res){
+    if(!req.user._id){
+        res.status(500).send();
+    }
+
     let query = {_id:req.params.id};
 
-    Article.remove(query, function(err){
-        if(err){
-            console.log(err);
-            return;
+    Article.findById(req.params.id, function(err, article){
+        if(article.author != req.user._id){
+            res.status(500).send();
         } else {
-            res.send('Success');
+            Article.remove(query, function(err){
+              if(err){
+                console.log(err);
+                return;
+              } else {
+                res.send('Success');
+              }
+            });
         }
     });
 });
