@@ -7,9 +7,13 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const config = require('./config/database');
 const passport = require('passport');
+const dotenv = require('dotenv');
 
+// DOTENV
+dotenv.config();
 
 mongoose.connect(process.env.MONGODB_URI || config.database);
+
 
 let db = mongoose.connection;
 

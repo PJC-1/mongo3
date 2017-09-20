@@ -97,7 +97,7 @@ router.delete('/:id', function(req, res){
 
     Article.findById(req.params.id, function(err, article){
         if(article.author != req.user._id){
-            res.status(500).send();
+            res.status(401).send();
         } else {
             Article.remove(query, function(err){
               if(err){
